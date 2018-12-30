@@ -152,6 +152,35 @@ $(".navbar-toggle.collapsed").on("click", function(){
       })
 
 
+
+/******************************************************************************/
+      /********************privacy policy listener script***************/
+
+      $("#privacy_policy").on("click",function(){
+
+        $(".privacy_policy").removeClass("hidden");
+        $("#privacy_policy").addClass("current");
+
+
+        $(".terms_of_use").addClass("hidden");
+        $("#terms_of_use").removeClass("current");
+      })
+
+
+
+      $("#terms_of_use").on("click",function(){
+
+        $(".terms_of_use").removeClass("hidden");
+        $("#terms_of_use").addClass("current");
+
+
+        $(".privacy_policy").addClass("hidden");
+        $("#privacy_policy").removeClass("current");
+      })
+      /********************privacy policy listener script***************/
+/******************************************************************************/
+
+
 // 786
 
 
