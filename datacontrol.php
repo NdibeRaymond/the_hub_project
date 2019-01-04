@@ -21,6 +21,7 @@ class database{
     protected $connectionStatus;
 
 
+
     function __construct($db){
 
         #constructor
@@ -40,6 +41,7 @@ class database{
             $this->connectionStatus = TRUE;
 
         }
+
     }
 
     #----------Getter Functions
@@ -116,7 +118,6 @@ class database{
     function updateRecord($table, $column, $newValue, $whereArg, $whereClause){
         #this function updates a single colume of record in a table in a database
         $sql = "UPDATE $table SET $column='$newValue' WHERE $whereArg=$whereClause" ;
-        var_dump($this->conn);
         if($this->conn->query($sql) == TRUE){
             return TRUE;
         }else{
@@ -127,7 +128,7 @@ class database{
 
 
 
-    function getRecord($table, $column, $whereArg, $whereClause){
+    public function getRecord($table, $column, $whereArg, $whereClause){
         #this function reads and returns a column of data from a table in the database
         $sql = "SELECT $column FROM $table WHERE $whereArg='$whereClause'";
         $result = $this->conn->query($sql);
@@ -177,15 +178,28 @@ class database{
     }
 
 
+    function parseInput($data){
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+
 
 }
 
-
-#$baseData = new database("thehub");
-#$baseData->insertPosts('Samsung 970 EVO ???', '0','Youngboss', 'https://massdrop-s3.imgix.net/img_poll/OpygxvaeQSiA4CNcrPM8_20-147-691-V01.jpg?auto=format&fm=jpg&fit=crop&w=235&h=235&dpr=1',
-#'Phones&Tablets');
-
-
+/*
+$baseData = new database("thehub");
+$vote = $baseData->getRecord('items', 'votes', 'id', 2);
+$vote++; #increment the votes
+$success = $baseData->updateRecord('items', 'votes', $vote, 'id', 2);
+if ($success){
+    echo 'voted ';
+}else {
+     echo 'error voting';
+}
+*/
 
 
 
